@@ -1,0 +1,18 @@
+﻿{
+  "People": [
+
+    {
+      "Name": "Vasyl",
+      "Surname": "Hulpak",
+      "Address": "Ruska",
+      "Phone": "0990583890"
+    },
+    {
+      "Name": "Valerian",
+      "Surname": "Hulpak",
+      "Address": "Ruska",
+      "Phone": "0990583890"
+    }
+
+  ]
+}

@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Компоненты Vue.js</title>
+    <meta charset="utf-8" />
+    <style>
+        a:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="col-md-12">
+        <label>Name</label>
+        <input type="text" v-model="Name" class="form-control" /><br>
+        <label>Surname</label>
+        <input type="text" v-model="Surname" class="form-control" /><br>
+        <label>Address</label>
+        <input type="text" v-model="Address" class="form-control" /><br>
+        <label>Phone</label><br>
+        <input type="text" v-model="Phone" class="form-control" />
+        <br>
+        <button type="button" v-on:click="add()">Add</button>
+        <button type="button" v-on:click="SaveFile()">SaveFile</button>
+        @*<button v-on:click="userData.push({Name,Surname,Address,Phone})">Добавить</button>*@
+        <br>
+        <table>
+            <tr>
+                <td><a>Name</a></td>
+                <td><a>Surname</a></td>
+                <td><a>Address</a></td>
+                <td><a>Phone</a></td>
+            </tr>
+            <tr v-for="b in userData">
+                <td>{{b.Name}}</td>
+                <td>{{b.Surname}}</td>
+                <td>{{b.Address}}</td>
+                <td>{{b.Phone}}</td>
+                <td>{{b.userData}} <button v-on:click="userData.splice(index,1)">Delete</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.0/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        var DataURL = 'data.json'
+        var App = new Vue({
+            el: '#app',
+            data: {
+                userData: []
+            },
+            mounted() {
+                var self = this
+                $.getJSON(DataURL, function (data) {
+                    self.userData = data.People;
+                });
+            },
+            methods: {
+                add: function (e) {
+                    this.userData.push({ Name: this.Name, Surname: this.Surname, Address: this.Address, Phone: this.Phone });
+                },
+                //SaveFile: function () {
+                //    const data = JSON.stringify(userData[])
+                //    const fs = require('fs');
+                //    fs.writeFile('data.json', data);
+                //}
+            }
+        })
+    </script>
+</body>
+</html>
